@@ -15,5 +15,5 @@ config :loa_of_loot, LoaOfLoot.Repo,
   username: "postgres",
   password: "postgres",
   database: "loa_of_loot_test",
-  hostname: "localhost",
+  hostname: if(System.get_env("CI"), do: "postgres", else: "localhost"),
   pool: Ecto.Adapters.SQL.Sandbox
