@@ -15,6 +15,8 @@ defmodule LoaOfLootWeb.ChannelCase do
 
   use ExUnit.CaseTemplate
 
+  alias Ecto.Adapters.SQL.Sandbox
+
   using do
     quote do
       # Import conveniences for testing with channels
@@ -25,13 +27,13 @@ defmodule LoaOfLootWeb.ChannelCase do
     end
   end
 
-
   setup tags do
-    :ok = Ecto.Adapters.SQL.Sandbox.checkout(LoaOfLoot.Repo)
+    :ok = Sandbox.checkout(LoaOfLoot.Repo)
+
     unless tags[:async] do
-      Ecto.Adapters.SQL.Sandbox.mode(LoaOfLoot.Repo, {:shared, self()})
+      Sandbox.mode(LoaOfLoot.Repo, {:shared, self()})
     end
+
     :ok
   end
-
 end

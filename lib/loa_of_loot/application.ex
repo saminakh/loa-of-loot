@@ -1,4 +1,5 @@
 defmodule LoaOfLoot.Application do
+  @moduledoc false
   use Application
 
   # See https://hexdocs.pm/elixir/Application.html
@@ -11,7 +12,7 @@ defmodule LoaOfLoot.Application do
       # Start the Ecto repository
       supervisor(LoaOfLoot.Repo, []),
       # Start the endpoint when the application starts
-      supervisor(LoaOfLootWeb.Endpoint, []),
+      supervisor(LoaOfLootWeb.Endpoint, [])
       # Start your own worker by calling: LoaOfLoot.Worker.start_link(arg1, arg2, arg3)
       # worker(LoaOfLoot.Worker, [arg1, arg2, arg3]),
     ]
