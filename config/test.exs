@@ -17,3 +17,6 @@ config :loa_of_loot, LoaOfLoot.Repo,
   database: "loa_of_loot_test",
   hostname: if(System.get_env("CI"), do: "postgres", else: "localhost"),
   pool: Ecto.Adapters.SQL.Sandbox
+
+config :loa_of_loot,
+  wcl_api_key: "test-key"

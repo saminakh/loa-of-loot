@@ -14,6 +14,8 @@ defmodule LoaOfLoot.DataCase do
 
   use ExUnit.CaseTemplate
 
+  alias Ecto.Adapters.SQL.Sandbox
+
   using do
     quote do
       alias LoaOfLoot.Repo
@@ -26,10 +28,10 @@ defmodule LoaOfLoot.DataCase do
   end
 
   setup tags do
-    :ok = Ecto.Adapters.SQL.Sandbox.checkout(LoaOfLoot.Repo)
+    :ok = Sandbox.checkout(LoaOfLoot.Repo)
 
     unless tags[:async] do
-      Ecto.Adapters.SQL.Sandbox.mode(LoaOfLoot.Repo, {:shared, self()})
+      Sandbox.mode(LoaOfLoot.Repo, {:shared, self()})
     end
 
     :ok
