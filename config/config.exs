@@ -7,7 +7,8 @@ use Mix.Config
 
 # General application configuration
 config :loa_of_loot,
-  ecto_repos: [LoaOfLoot.Repo]
+  ecto_repos: [LoaOfLoot.Repo],
+  wcl_api_key: System.get_env("WARCRAFT_LOGS_API_KEY")
 
 # Configures the endpoint
 config :loa_of_loot, LoaOfLootWeb.Endpoint,
