@@ -10,6 +10,13 @@
 # We recommend using the bang functions (`insert!`, `update!`
 # and so on) as they will fail if something goes wrong.
 
+uldir = %LoaOfLoot.Configs.Zone{
+  name: "Uldir",
+  id: 19
+}
+
+LoaOfLoot.Repo.insert!(uldir)
+
 "priv/repo/fixtures/logs.json"
 |> File.read!()
 |> Poison.decode!()
@@ -19,7 +26,7 @@
   struct = %LoaOfLoot.Guilds.Log{
     duration: duration,
     log_id: log["id"],
-    zone: log["zone"]
+    zone_id: log["zone"]
   }
   LoaOfLoot.Repo.insert!(struct)
 end)

@@ -5,7 +5,6 @@ defmodule LoaOfLoot.Repo.Migrations.CreateLogs do
     create table(:logs) do
       add :log_id, :string
       add :duration, :integer
-      add :zone, :integer
 
       timestamps()
     end
