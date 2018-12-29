@@ -18,6 +18,7 @@ defmodule LoaOfLootWeb.Router do
     pipe_through(:browser)
 
     get("/", PageController, :index)
+    get("/zone/:id", ZoneController, :index)
   end
 
   # Other scopes may use custom stacks.

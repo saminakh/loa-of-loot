@@ -1,0 +1,12 @@
+<nav role="navigation">
+  <%= link "Home", to: "/" %>
+  <ul>
+    <%= for zone <- list_zones() do %>
+      <li>
+        <%= link to: zone_path(@conn, :index, zone_id(zone)) do %>
+          <%= zone_name(zone) %>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+</nav>

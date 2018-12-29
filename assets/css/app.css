@@ -1,1 +1,9 @@
 /* This file is for your main application css. */
+body {
+  background: url("https://cdn.discordapp.com/attachments/500886569532653586/522254379353374751/LoLoot.jpg");
+  background-size: cover;
+}
+
+.container {
+  background-color: rgba(255, 255, 255, 0.8);
+}
