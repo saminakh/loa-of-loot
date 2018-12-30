@@ -44,7 +44,9 @@ defmodule LoaOfLoot.Mixfile do
       {:plug_cowboy, "~> 1.0"},
       {:httpoison, "~> 1.4"},
       {:credo, "~> 1.0.0", only: [:dev, :test], runtime: false},
-      {:poison, "~> 3.1"}
+      {:poison, "~> 3.1"},
+      {:quantum, "~> 2.3"},
+      {:timex, "~> 3.0"}
     ]
   end
 
