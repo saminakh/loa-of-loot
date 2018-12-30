@@ -1,4 +1,4 @@
-image: trenpixster/elixir:latest
+image: bitwalker/alpine-elixir-phoenix:latest
 
 services:
   - postgres:latest

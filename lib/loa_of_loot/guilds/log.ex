@@ -5,10 +5,12 @@ defmodule LoaOfLoot.Guilds.Log do
   use Ecto.Schema
   import Ecto.Changeset
 
+  alias LoaOfLoot.Configs.Zone
+
   schema "logs" do
     field(:duration, :integer)
     field(:log_id, :string)
-    field(:zone, :integer)
+    belongs_to(:zone, Zone)
 
     timestamps()
   end
@@ -16,8 +18,8 @@ defmodule LoaOfLoot.Guilds.Log do
   @doc false
   def changeset(log, attrs) do
     log
-    |> cast(attrs, [:log_id, :duration, :zone])
-    |> validate_required([:log_id, :duration, :zone])
+    |> cast(attrs, [:log_id, :duration, :zone_id])
+    |> validate_required([:log_id, :duration, :zone_id])
     |> unique_constraint([:log_id])
   end
 end

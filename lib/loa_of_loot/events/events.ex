@@ -13,4 +13,9 @@ defmodule LoaOfLoot.Events do
     |> Cast.changeset(attrs)
     |> Repo.insert()
   end
+
+  def get_casts_by_log(log_id) do
+    query = from cast in Cast, where: cast.log_id == ^log_id
+    Repo.all(query)
+  end
 end

@@ -13,6 +13,11 @@ defmodule LoaOfLoot.Guilds do
 
   def get_log!(id), do: Repo.get!(Log, id)
 
+  def get_log_by_zone(zone_id) do
+    query = from log in Log, where: log.zone_id == ^zone_id
+    Repo.all(query)
+  end
+
   def create_log(attrs \\ %{}) do
     %Log{}
     |> Log.changeset(attrs)
