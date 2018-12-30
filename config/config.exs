@@ -23,6 +23,10 @@ config :logger, :console,
   format: "$time $metadata[$level] $message\n",
   metadata: [:user_id]
 
+config :loa_of_loot, LoaOfLoot.Scheduler,
+  jobs: [
+    {"* * * * *", {LoaOfLoot.WarcraftLogsTasks, :update_guild_data, [System.get_env("GUILD_NAME"), System.get_env("GUILD_SERVER"), System.get_env("GUILD_REGION")]}}
+  ]
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{Mix.env()}.exs"
