@@ -1,7 +1,7 @@
 <ol>
   <%= for cast <- @casts do %>
     <li>
-      <%= "#{cast.caster}: #{cast.count}" %>
+      <%= cast.caster %>: <%= cast.count %>
     </li>
   <% end %>
 </ol>
