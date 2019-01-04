@@ -7,6 +7,6 @@ defmodule LoaOfLoot.Repo.Migrations.CreateZones do
 
       timestamps()
     end
-
+    create unique_index(:zones, [:name])
   end
 end

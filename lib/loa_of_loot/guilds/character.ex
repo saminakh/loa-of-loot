@@ -16,6 +16,6 @@ defmodule LoaOfLoot.Guilds.Character do
     character
     |> cast(attrs, [:name])
     |> validate_required([:name])
-    |> unique_constraint([:name])
+    |> unique_constraint(:name)
   end
 end

@@ -16,5 +16,6 @@ defmodule LoaOfLoot.Configs.Zone do
     zone
     |> cast(attrs, [:name])
     |> validate_required([:name])
+    |> unique_constraint(:name)
   end
 end

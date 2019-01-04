@@ -9,16 +9,18 @@ defmodule LoaOfLoot.Events.Cast do
 
   schema "casts" do
     field(:ability_id, :integer)
+    field(:count, :integer)
     belongs_to(:target, Character, [foreign_key: :target_id])
     belongs_to(:caster, Character, [foreign_key: :caster_id])
-    belongs_to(:log, Log, references: :log_id)
+    belongs_to(:log, Log)
     timestamps()
   end
 
   @doc false
   def changeset(casts, attrs) do
     casts
-    |> cast(attrs, [:ability_id, :target_id, :caster_id, :log_id])
-    |> validate_required([:ability_id, :target_id, :caster_id, :log_id])
+    |> cast(attrs, [:ability_id, :target_id, :caster_id, :count])
+    |> cast_assoc(:log)
+    |> validate_required([:ability_id, :target_id, :caster_id, :count])
   end
 end

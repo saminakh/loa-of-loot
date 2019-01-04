@@ -4,6 +4,7 @@ defmodule LoaOfLoot.Repo.Migrations.CreateCasts do
   def change do
     create table(:casts) do
       add :ability_id, :integer
+      add :count, :integer
       add :target_id, references(:characters)
       add :caster_id, references(:characters)
       add :log_id, references(:logs)
