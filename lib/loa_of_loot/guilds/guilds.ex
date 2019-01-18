@@ -4,6 +4,7 @@ defmodule LoaOfLoot.Guilds do
   """
 
   import Ecto.Query, warn: false
+  alias Ecto.Changeset
   alias LoaOfLoot.Repo
   alias LoaOfLoot.Guilds.{Character, Log}
 
@@ -18,10 +19,29 @@ defmodule LoaOfLoot.Guilds do
     Repo.all(query)
   end
 
-  def create_log(attrs \\ %{}) do
+  def update_log(%Log{} = log, attrs) do
+    log
+    |> Log.changeset(attrs)
+    |> Repo.update()
+  end
+
+  def create_log(attrs, zone) do
     %Log{}
     |> Log.changeset(attrs)
+    |> Changeset.put_assoc(:zone, zone)
     |> Repo.insert()
+  end
+
+  def get_or_create_log(%{wcl_id: id, duration: duration} = attrs, zone) do
+    case Repo.get_by(Log, wcl_id: id) do
+      nil -> create_log(attrs, zone)
+      log ->
+        if duration > log.duration do
+          update_log(log, attrs)
+        else
+          {:error, "No updates to log"}
+        end
+    end
   end
 
   def list_characters do
@@ -34,5 +54,18 @@ defmodule LoaOfLoot.Guilds do
     %Character{}
     |> Character.changeset(attrs)
     |> Repo.insert()
+  end
+
+  def create_character!(attrs \\ %{}) do
+    %Character{}
+    |> Character.changeset(attrs)
+    |> Repo.insert!()
+  end
+
+  def get_or_create_character_by_name(name) do
+    case Repo.get_by(Character, name: name) do
+      nil -> create_character!(%{name: name})
+      character -> character
+    end
   end
 end
