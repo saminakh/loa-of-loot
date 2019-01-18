@@ -12,9 +12,8 @@
 
 alias LoaOfLoot.Repo
 alias LoaOfLoot.Configs.Zone
-alias LoaOfLoot.Events.Cast
+alias LoaOfLoot.Events
 alias LoaOfLoot.Guilds
-alias LoaOfLoot.Guilds.{Character, Log}
 
 uldir = %Zone{name: "Uldir", id: 19}
 
@@ -32,20 +31,13 @@ end
     duration: duration,
     wcl_id: log["id"]
   }
-  %Log{}
-  |> Log.changeset(attrs)
-  |> Ecto.Changeset.put_assoc(:zone, zone)
-  |> Repo.insert
+  Guilds.create_log(attrs, zone)
 end)
 
 "priv/repo/fixtures/characters.json"
 |> File.read!()
 |> Poison.decode!()
-|> Enum.each(fn char_name  ->
-  %Character{}
-  |> Character.changeset(%{name: char_name})
-  |> Repo.insert
-end)
+|> Enum.each(& Guilds.create_character(%{name: &1}))
 
 characters = Guilds.list_characters()
 logs = Guilds.list_logs()
@@ -58,11 +50,10 @@ ability_id = 128275
   caster = Enum.random(characters)
   target = Enum.random(characters)
   log = Enum.random(logs)
-  Repo.insert!(%Cast{
+  Events.create_cast(%{
     ability_id: ability_id,
     count: count,
     target_id: target.id,
-    caster_id: caster.id,
-    log_id: log.id
-  })
+    caster_id: caster.id
+  }, log)
 end)
