@@ -1,1 +1,4 @@
 export WARCRAFT_LOGS_API_KEY=
+export GUILD_NAME=
+export GUILD_SERVER=
+export GUILD_REGION=

@@ -15,6 +15,8 @@ defmodule LoaOfLoot.WarcraftLogs do
   def process_request_options(options) do
     key = Application.get_env(:loa_of_loot, :wcl_api_key)
     params = options[:params] || %{}
-    Keyword.merge(options, params: Map.merge(params, %{api_key: key}))
+    options
+    |> Keyword.merge(params: Map.merge(params, %{api_key: key}))
+    |> Keyword.merge(recv_timeout: 10_000)
   end
 end
