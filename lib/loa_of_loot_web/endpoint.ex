@@ -1,7 +1,7 @@
 defmodule LoaOfLootWeb.Endpoint do
   use Phoenix.Endpoint, otp_app: :loa_of_loot
 
-  socket("/socket", LoaOfLootWeb.UserSocket)
+  socket "/socket", LoaOfLootWeb.UserSocket
 
   # Serve at "/" the static files from "priv/static" directory.
   #
