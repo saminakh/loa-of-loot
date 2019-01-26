@@ -6,6 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Sacrifices to de Loa of Loot, Mon">
     <meta name="author" content="Eris-Area52">
+    <link rel="icon" type="image/x-icon" href="<%= static_path(@conn, "/images/favicon.jpg") %>" >
+
+    <meta property="og:title" content="Loa of Loot Sacrifices">
+    <meta property="og:description" content="Sacrifices to de Loa of Loot, Mon">
+    <meta property="og:image" content="<%= static_path(@conn, "/images/loa_of_loot.jpg") %>">
+    <meta property="og:url" content="<%= static_path(@conn, "/") %>">
+
 
     <title>Sacrifice Leaderboard</title>
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
