@@ -26,3 +26,5 @@ npm-debug.log
 # variables.
 /config/*.secret.exs
 .envrc
+
+.DS_Store
