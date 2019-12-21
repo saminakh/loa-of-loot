@@ -14,9 +14,14 @@ defmodule LoaOfLootWeb.ZoneController do
       end)
       |> Enum.map(fn {caster_id, casts} ->
         character = Guilds.get_character!(caster_id)
+        count =
+          casts
+          |> Enum.map(& &1.count)
+          |> Enum.sum
+
         %{
           caster: character.name,
-          count: Enum.count(casts)
+          count: count
         }
       end)
       |> Enum.sort(& &1.count >= &2.count)
